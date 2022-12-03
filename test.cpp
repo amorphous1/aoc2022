@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "day01.cpp"
 #include "day02.cpp"
+#include "day03.cpp"
 
 using namespace std;
 
@@ -28,5 +29,18 @@ TEST(Samples, Day02) {
     };
     EXPECT_EQ(day02a(sample_input), 15);
     EXPECT_EQ(day02b(sample_input), 12);
+}
+
+TEST(Samples, Day03) {
+    vector<string> sample_input = {
+            "vJrwpWtwJgWrhcsFMMfFFhFp",
+            "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+            "PmmdzqPrVvPwwTWBwg",
+            "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+            "ttgJtRGJQctTZtZT",
+            "CrZsJsPPZsGzwwsLwLmpwMDw",
+    };
+    EXPECT_EQ(day03a(sample_input), 157);
+    EXPECT_EQ(day03b(sample_input), 70);
 }
 
