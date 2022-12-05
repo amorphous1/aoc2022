@@ -3,6 +3,7 @@
 #include "day02.cpp"
 #include "day03.cpp"
 #include "day04.cpp"
+#include "day05.cpp"
 
 using namespace std;
 
@@ -57,3 +58,26 @@ TEST(Samples, Day04) {
     EXPECT_EQ(day04(sample_input), make_pair(2, 4));
 }
 
+TEST(Samples, Day05a) {
+    stack<char> s1({'Z', 'N'}), s2({'M', 'C', 'D'}), s3({'P'});
+    vector<stack<char>> sample_stacks = { s1, s2, s3 };
+    vector<string> sample_moves = {
+            "move 1 from 2 to 1",
+            "move 3 from 1 to 3",
+            "move 2 from 2 to 1",
+            "move 1 from 1 to 2",
+    };
+    EXPECT_EQ(day05a(sample_stacks, sample_moves), "CMZ");
+}
+
+TEST(Samples, Day05b) {
+    stack<char> s1({'Z', 'N'}), s2({'M', 'C', 'D'}), s3({'P'});
+    vector<stack<char>> sample_stacks = { s1, s2, s3 };
+    vector<string> sample_moves = {
+            "move 1 from 2 to 1",
+            "move 3 from 1 to 3",
+            "move 2 from 2 to 1",
+            "move 1 from 1 to 2",
+    };
+    EXPECT_EQ(day05b(sample_stacks, sample_moves), "MCD");
+}
