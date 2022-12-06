@@ -4,6 +4,7 @@
 #include "day03.cpp"
 #include "day04.cpp"
 #include "day05.cpp"
+#include "day06.cpp"
 
 using namespace std;
 
@@ -80,4 +81,18 @@ TEST(Samples, Day05b) {
             "move 1 from 1 to 2",
     };
     EXPECT_EQ(day05b(sample_stacks, sample_moves), "MCD");
+}
+
+TEST(Samples, Day06) {
+    EXPECT_EQ(day06a("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 7);
+    EXPECT_EQ(day06a("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
+    EXPECT_EQ(day06a("nppdvjthqldpwncqszvftbrmjlhg"), 6);
+    EXPECT_EQ(day06a("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
+    EXPECT_EQ(day06a("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11);
+
+    EXPECT_EQ(day06b("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19);
+    EXPECT_EQ(day06b("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23);
+    EXPECT_EQ(day06b("nppdvjthqldpwncqszvftbrmjlhg"), 23);
+    EXPECT_EQ(day06b("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
+    EXPECT_EQ(day06b("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
 }

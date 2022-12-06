@@ -5,7 +5,8 @@
 //#include "day02.cpp"
 //#include "day03.cpp"
 //#include "day04.cpp"
-#include "day05.cpp"
+//#include "day05.cpp"
+#include "day06.cpp"
 
 using namespace std;
 
@@ -34,17 +35,20 @@ int main() {
 //    cout << day03b(read_lines("inputs/day03.input")) << endl;  // 2585
 //    const pair<int, int> &day4 = day04(read_lines("inputs/day04.input"));
 //    cout << day4.first << " " << day4.second << endl;  // 524 798
-    stack<char> s1({ 'Q','M','G','C','L', }),
-                s2({ 'R','D','L','C','T','F','H','G', }),
-                s3({ 'V','J','F','N','M','T','W','R', }),
-                s4({ 'J','F','D','V','Q','P', }),
-                s5({ 'N','F','M','S','L','B','T', }),
-                s6({ 'R','N','V','H','C','D','P', }),
-                s7({ 'H','C','T', }),
-                s8({ 'G','S','J','V','Z','N','H','P', }),
-                s9({ 'Z','F','H','G' });
-    vector<stack<char>> stacks = { s1, s2, s3, s4, s5, s6, s7, s8, s9 };
+//    stack<char> s1({ 'Q','M','G','C','L', }),
+//                s2({ 'R','D','L','C','T','F','H','G', }),
+//                s3({ 'V','J','F','N','M','T','W','R', }),
+//                s4({ 'J','F','D','V','Q','P', }),
+//                s5({ 'N','F','M','S','L','B','T', }),
+//                s6({ 'R','N','V','H','C','D','P', }),
+//                s7({ 'H','C','T', }),
+//                s8({ 'G','S','J','V','Z','N','H','P', }),
+//                s9({ 'Z','F','H','G' });
+//    vector<stack<char>> stacks = { s1, s2, s3, s4, s5, s6, s7, s8, s9 };
 //    cout << day05a(stacks, read_lines("inputs/day05.input")) << endl;  // VCTFTJQCG
-    cout << day05b(stacks, read_lines("inputs/day05.input")) << endl;  // GCFGLDNJZ
+//    cout << day05b(stacks, read_lines("inputs/day05.input")) << endl;  // GCFGLDNJZ
+    string day6input = "rnttlvtttmnmpmhpmmzvmmhpmmnrntnnsnrnndvnddmbbtptssjcczmmbwmbmwwmmflfggwzzhjjgppwrwdwqwbbbmwbwgggqccmlmdmgdgqgpqgpgzzndddgdbbsvvfsfppwjwzjjcnjccwrwrprgppbpddnccjggfrggqngqgdqgddvsshqhmqqfvqvlvwvnwwmccrpcczvcczzgsgwwlggqsggmdgglblpblltbbzrbzzcscgccwssbddsmddzzvvhjjwjwrjwrwfftmttplldnllqttdhddmvdmmhsmsmqsqwqpqbpqppqdppbnpnhhppjbbrzrbrggdbddnrdrzrdrpdppzzfzrzgzllwlwzlllwtltslttlmtmqqbbzmzhmmjjwrjrrnzrzhzmmtbbrppmmfddjhdjdsdllrbbpfphpzpwwjvwwdpwpzwwzrrfnfwwfbbpttzjtjptpvvsfvvljjrzzmdmsddpvpgvvdcdwcwhwghwggrjjhdjhddzhhwbhwbwwbrwwrfrmfrfvrfftzzqrzqrqtrqtrqtrqttgctclcwlwwvqqnlnqlnnndmnmggznzhzqzggzrzbbrwbrwrvvscvvmvhmvvbsbjsjfjpfpqpbbbbjtjptpprnndpnnrsswffmnnjhhpqhqwhhbwhbhgbbfrbrjjpmjmzzdzjdjffcvvtwttrrcscvcncqcfcwwpgpfptpcpspllcfcssgbglgdllcdcmcpcqclctcvtvvbhbbdhhczhzshzhbhchzchchlcllwswqqmpmbbqwwzgzhggczgzffsgggjjlcjjpnjjfqjfjvfvrfrlrvvpfpcfcbffnmfmbmbgggplldblddvcvjcvvmbmmmrvrvvnhhqttgdgvdgdqgddcsclljplpbbsvbsbfsffshsgslsllzztggttfccctwtswwrvwvnnfbnnvjnvvlgvvfppmvpmmvpmmcttjffgsffcllncntcncfclcgcppvdvpvrvbrrnnvrvhrvrzvrvnrvrdrnrqrnngsshqhcqqbfqqzmmmzjzqztznttjffqzfqfbqqsggclgclcddtqqdppbjppqvpqvvmqmqnqcnqcqcqvqjqzqbzzbrrgfgddgtgnnpjjbzjjbbtstzszwswggfffmnnpllfvvnwnpwpqwqwlllqlmmzcmcrcmrcmrcrffnrnssjjrdjjwwqgwqgqdggwzwjzzbfbpptctchthbbbqsqggrllldwdffvwwlrwwljwjnncmmjmvjmmqnnmrrgjgvvpqqbppqlpqllqnqdndwwlppcjcdjjcnnmddffgjjrwjrwjjhvhqvhhfssrtsrsgrrwjwhhbqqpzzrdrhrqhrqrprqqmllsszhzllcdllpmpbbmsmjjmwmssvlslwwmtwmmgvgcvggzcgzgddsjsjfsssftfcchhfmfcmcpcpvcppqggjddljjbttwrrhghqggpghgngzngznnzqnnssqlqmqbmmmqdqqhttnqqjhhphrhccbggmjjpwpbwpprdrvvjzvvtctzzmpphwpwdpdvvhbvvdvsdsjdjbdjdljjstswttnhhbfffmnngddlglqggvzvlzvzqqvbqbvbjbnjjsvjjwpjjzshrdtrjttvqnbltrfpvnztrwzrtgjpzgqdjfglqgjrgdzbhqpghdbfhlfjhbfjfjppfgljmgwljlsbmltgztthnzvdrgqlgddvqhzctdgcphfqvnpjjgzwqfvnhvzdrwtpgfdjpqnfshslqmplcprdntnhqqbqptwzvdddhcjcqrfhjqnjvpnhttblwgjwlfwntdchgfjmdbgtqtdgnzbqwzzcltwtmtqtdbvjtfvlzpcvgmrfqwfhwqmhvwhftzgmhshffnjwqbvztszsrrglqvhfpqmbnqjsfnwdwgdtmztbvqrmztfctmvptbwnfzfgdztjgnqsrsqqqnrpgzsqszzwwwgqnnnrdzhzdbqjgbvncprzcjqchzfgnclbrmphbsdwwpvwjwlbshhgjfbhjjtdqrmrcjfnrrhqrpsbglthzpvfglqspttdpwlljhnlrjpzchbrqcgtmcscjnwvpztfjdcwbnbgmbpgdthgnhbrtwftnscbsrndghbslflpcpjwbcjnhzcwdcslmzqbtrlnzmntlpjcsctnsqwtbffqlhfgcsflvfwnmczvsbflnnnzpfjfrcwhhcbtbjcbghtcwcgdbrwrgfgvpwtcwlwcmnmrtcrjbwtwlrfstztsghfvrfjzzpswpqfqpvqstvbhqfjlgmtdlhqrhwzqpnqpllnlgzwptbgftmblqcwfcllbwfzdhrndfrvdvwzqvhnghlzvhldnnvrgqvlpfdnpmcgddjmstzsqfvzwftflrwtzqwjbbqhjpfbdztdfsgsztvvrvslgspgpdcmwszdfsddqhpzpsjgqmgzqvhchlgrmcmzwzbtwfphvgcdmhfdczhffgmqpncdjszzgwfvwsqddvbcgngbjwhmphjsmjthvbthhfwdtqmjctcmdpqpsdrnrzdgzgzctbhwsgvtjgwjbsnnjmpmqgwrnqfqbpnrpddjsrsvmcshhthwfrwmqsrjhlsrgfzvwmdzhwrvchppqldghgzflrnwqnvntmtdwmrpgbdbzvcmnqstzntvllcgzsnvrhqzsfncznhgrggmvrmgsqmhbdsjbsqqhzppfcwdrgdvfjdscrvpwtsdmcnczwbbjhvddprwtzfwslcfdcrqfszcgmhtdfvlqzqtvwngzvmmqcrqpzwzhggjnphsrmnctnfhtppglspnvzrsqfgzdfrrwbzbqwvbvbnzgmdrqrnsvdpvlgcmnggsbmbtfwrvdjrtgtgcqscnfpgswgsngdqnnscffdcnlrcpdpcbpzvqcrtjhlwvgnfhhqmprthrtcvcjjwgprqqdwfbgmzlwttjpvcjzfwbdhvngsjpgtqsvbldbcvhjhzbjzblqtqhlnbzzqfcpnzdhbplztcgvzhbgshqbccgwzhftqvtwzbwmnfrsgphhhgtsmwlqhlcchtbtggqwmbdthhmqqjtfdvfpddfdrtfjbpmwtcbfnrhwcnpdqrdtsfdmjfzdwwgnftnwpssgqtlpdbwhnzcnfmppclsswbhcdghpnslwjznqszgdtrnpncsqsnbrplrfwpbnfnvttlzcjtvhzcpzmhfsfzfjlzqqnprpdvwbfthmrswqrcqqwrnwzmgjqqsnqdblssmhngjjvprmqbswtgzzvprwhrgjqshvmwzgrgfmzlgrtzbmdlzncwqdftfsndvdfmmplswdbjtbcbvcvtpjvrqpghczpqvvpqwfbfhllbpvrrfsmsjhqbldcrwvzvcvzfffqvplbfbdbwctbjsljlfwtbcnpsbtpmcqgdvltmztvrcfsprbnvwplwhncgsdnrdmqnmcvpvvrlmlwtgvrnwvzsfctdlcfvtgqmpnbwcbwvfpmqnbjvwffpjtvvgflhrnlngrzhhttdtdbvscftsqtvbrgzfgsjvwhzjcbsqcttlgwmhhvjhwhgmmdtflfdbvnhgcblqmwjfsqnngjqfbvdnsfbgwjfhpgdgvhpbvlrtpcpvhrbtqpbffzcqrvbqwvqmmrcwtnvcgwvsqzvrwdbcnjshbnbftmmvrmjvgfdwbsjvqfdwnnvqqhbmshcrclrwhfhbtnwqvmrrvdwgcwcsrhdbqndsthmrmbjhttjtzmlflbrmhlcgsbdjcjcvwcjffnqrntpflrgfcngpchtrzpnflwjvcgbwtsnjfqsggwmwhdvbzdpjmtwlmrslnjsndjtgjmmwmdgtnfrztppzqvqhbfzqpsdhvsshddlzwcmsndrpqhndsrjnngnmgmzrvchwlqgdnbssbhpbpgwpsrcnbphpslvqplhpgdhmrnwwjmhvnsfjmrfwtvjjrmgptvjffhbgpmfgmgrcjrwqhccssrqjpljbpwcvsfdtmbhzsmsjsgblgpcqszsttfclrjcnsslmngmbmwqfhddbvmbvwmrmvglsl";
+    cout << day06a(day6input) << endl;  // 1651
+    cout << day06b(day6input) << endl;  // 3837
     return 0;
 }
