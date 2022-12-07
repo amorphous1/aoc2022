@@ -5,6 +5,7 @@
 #include "day04.cpp"
 #include "day05.cpp"
 #include "day06.cpp"
+#include "day07.cpp"
 
 using namespace std;
 
@@ -95,4 +96,34 @@ TEST(Samples, Day06) {
     EXPECT_EQ(day06b("nppdvjthqldpwncqszvftbrmjlhg"), 23);
     EXPECT_EQ(day06b("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
     EXPECT_EQ(day06b("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
+}
+
+TEST(Samples, Day07) {
+    vector<string> sample_input = {
+            "$ cd /",
+            "$ ls",
+            "dir a",
+            "14848514 b.txt",
+            "8504156 c.dat",
+            "dir d",
+            "$ cd a",
+            "$ ls",
+            "dir e",
+            "29116 f",
+            "2557 g",
+            "62596 h.lst",
+            "$ cd e",
+            "$ ls",
+            "584 i",
+            "$ cd ..",
+            "$ cd ..",
+            "$ cd d",
+            "$ ls",
+            "4060174 j",
+            "8033020 d.log",
+            "5626152 d.ext",
+            "7214296 k",
+    };
+    EXPECT_EQ(day07a(sample_input), 95437);
+    EXPECT_EQ(day07b(sample_input), 24933642);
 }

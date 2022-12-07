@@ -6,7 +6,8 @@
 //#include "day03.cpp"
 //#include "day04.cpp"
 //#include "day05.cpp"
-#include "day06.cpp"
+//#include "day06.cpp"
+#include "day07.cpp"
 
 using namespace std;
 
@@ -47,7 +48,9 @@ int main() {
 //    vector<stack<char>> stacks = { s1, s2, s3, s4, s5, s6, s7, s8, s9 };
 //    cout << day05a(stacks, read_lines("inputs/day05.input")) << endl;  // VCTFTJQCG
 //    cout << day05b(stacks, read_lines("inputs/day05.input")) << endl;  // GCFGLDNJZ
-    cout << day06a(read_lines("inputs/day06.input").at(0)) << endl;  // 1651
-    cout << day06b(read_lines("inputs/day06.input").at(0)) << endl;  // 3837
+//    cout << day06a(read_lines("inputs/day06.input").at(0)) << endl;  // 1651
+//    cout << day06b(read_lines("inputs/day06.input").at(0)) << endl;  // 3837
+    cout << day07a(read_lines("inputs/day07.input")) << endl;  // 1543140
+    cout << day07b(read_lines("inputs/day07.input")) << endl;  // 1117448
     return 0;
 }
