@@ -7,49 +7,41 @@ using namespace std;
 struct Cpu {
     int cycle = 0, x = 1, signal = 0;
     vector<string> screen = {
-            "........................................",
-            "........................................",
-            "........................................",
-            "........................................",
-            "........................................",
-            "........................................",
+            "                                        ",
+            "                                        ",
+            "                                        ",
+            "                                        ",
+            "                                        ",
+            "                                        ",
     };
-
-    void advance_cycles(int delta) {
-        for (int i = 0; i < delta; i++) {
+    void advance_cycles(int steps) {
+        for (int i = 0; i < steps; i++) {
             cycle++;
-            if (cycle == 20 || (cycle - 20) % 40 == 0) {
-                signal += cycle * x;
-            }
-            int col = (cycle-1) % 40;
-            if (abs(col - x) < 2) {
-                int row = (cycle-1) / 40;
-                cout << "cycle=" << cycle << " row=" << row << " col=" << col << endl;
-                screen.at(row)[col] = '#';
-            }
+            signal += (cycle == 20 || (cycle - 20) % 40 == 0) ? cycle * x : 0;
+            int col = (cycle-1) % 40, row = (cycle-1) / 40;
+            screen.at(row)[col] = (abs(col - x) < 2) ? '#' : '.';
         }
-    }
-    void noop() {
-        advance_cycles(1);
-        cout << "noop - " << cycle << ", X=" << x << ", signal=" << signal << endl;
     }
     void addx(int delta) {
         advance_cycles(2);
         x += delta;
-        cout << "addx " << delta << " - " << cycle << ", X=" << x << ", signal=" << signal << endl;
+    }
+    static Cpu execute(const vector<string>& instructions) {
+        Cpu cpu;
+        for (const string& line : instructions) {
+            vector<string> tokens = split(line, " ");
+            string instruction = tokens[0];
+            if (instruction == "noop") cpu.advance_cycles(1);
+            if (instruction == "addx") cpu.addx(stoi(tokens[1]));
+        }
+        return cpu;
     }
 };
 
-int day10a(const vector<string>& lines) {
-    Cpu cpu = { 0, 1, 0};
-    for (const string& line : lines) {
-        vector<string> tokens = split(line, " ");
-        string instruction = tokens[0];
-        if (instruction == "noop") cpu.noop();
-        if (instruction == "addx") cpu.addx(stoi(tokens[1]));
-    }
-    for (string row : cpu.screen) {
-        cout << row << endl;
-    }
-    return cpu.signal;
+int day10a(const vector<string>& instructions) {
+    return Cpu::execute(instructions).signal;
+}
+
+vector<string> day10b(const vector<string>& instructions) {
+    return Cpu::execute(instructions).screen;
 }

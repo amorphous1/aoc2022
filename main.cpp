@@ -59,6 +59,8 @@ int main() {
 //    cout << day08b(read_lines("inputs/day08.input")) << endl;  // 535680
 //    cout << day09a(read_lines("inputs/day09.input")) << endl;  // 6026
 //    cout << day09b(read_lines("inputs/day09.input")) << endl; // 2273
-    cout << day10a(read_lines("inputs/day10.input")) << endl; //
+    cout << day10a(read_lines("inputs/day10.input")) << endl; // 13520
+    vector<string> screen = day10b(read_lines("inputs/day10.input")); // PGPHBEAB
+    for (const string& row : screen) cout << row << endl;
     return 0;
 }
