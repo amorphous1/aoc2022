@@ -12,6 +12,15 @@ struct Monkey {
     int worry_test, worry_test_true_target, worry_test_false_target;
     unsigned long long inspected_items = 0;
 
+    unsigned long long inspect_next() {
+        unsigned long long old_worry = items_to_inspect.front();
+        items_to_inspect.pop_front();
+        inspected_items++;
+        auto operands = find_numbers<vector<unsigned long long>>(worry_updater);
+        unsigned long long operand = (operands.size() == 1) ? operands[0] : old_worry;
+        return worry_updater[0] == '*' ? old_worry * operand : old_worry + operand;
+    }
+
     static Monkey parse(const vector<string>& monkey_spec, int start) {
         auto items = find_numbers<deque<unsigned long long>>(monkey_spec[start + 1]);
         string worry_updater = split(monkey_spec[start+2], " new = old ")[1];
@@ -24,12 +33,6 @@ struct Monkey {
     }
 };
 
-unsigned long long update_worry(unsigned long long old, const string& updater) {
-    auto operands = find_numbers<vector<unsigned long long>>(updater);
-    unsigned long long operand = (operands.size() == 1) ? operands[0] : old;
-    return updater[0] == '*' ? old * operand : old + operand;
-}
-
 unsigned long long day11(const vector<string>& monkey_specs, int rounds, bool divide_worry) {
     vector<Monkey> monkeys;
     unsigned long long multiplied_worry_tests = 1;
@@ -41,10 +44,7 @@ unsigned long long day11(const vector<string>& monkey_specs, int rounds, bool di
     for (int round = 1; round <= rounds; round++) {
         for (Monkey& monkey : monkeys) {
             while (!monkey.items_to_inspect.empty()) {
-                unsigned long long old_worry = monkey.items_to_inspect.front();
-                monkey.items_to_inspect.pop_front();
-                monkey.inspected_items++;
-                unsigned long long updated_worry = update_worry(old_worry, monkey.worry_updater);
+                unsigned long long updated_worry = monkey.inspect_next();
                 unsigned long long new_worry = divide_worry ? updated_worry / 3 : updated_worry % multiplied_worry_tests;
                 int target = new_worry % monkey.worry_test == 0 ? monkey.worry_test_true_target : monkey.worry_test_false_target;
                 monkeys[target].items_to_inspect.push_back(new_worry);
