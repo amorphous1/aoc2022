@@ -17,9 +17,9 @@ struct Cpu {
     void advance_cycles(int steps) {
         for (int i = 0; i < steps; i++) {
             cycle++;
-            signal += (cycle == 20 || (cycle - 20) % 40 == 0) ? cycle * x : 0;
-            int col = (cycle-1) % 40, row = (cycle-1) / 40;
-            screen.at(row)[col] = (abs(col - x) < 2) ? '#' : '.';
+            signal += (cycle - 20) % 40 == 0 ? cycle * x : 0;
+            int col = (cycle - 1) % 40, row = (cycle - 1) / 40;
+            screen.at(row)[col] = abs(col - x) < 2 ? '#' : '.';
         }
     }
     void addx(int delta) {
