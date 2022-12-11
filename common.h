@@ -13,7 +13,8 @@ C find_numbers(const string& str) {
     do {
         start = str.find_first_of(digits, end);
         end = str.find_first_not_of(digits, start);
-        numbers.push_back(stoi(str.substr(start, end != string::npos ? end-start : end)));
+        if (start != string::npos)
+            numbers.push_back(stoi(str.substr(start, end != string::npos ? end-start : end)));
     } while (end != string::npos);
     return numbers;
 }

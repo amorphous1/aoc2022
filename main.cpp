@@ -63,6 +63,7 @@ int main() {
 //    cout << day10a(read_lines("inputs/day10.input")) << endl;  // 13520
 //    vector<string> screen = day10b(read_lines("inputs/day10.input"));  // PGPHBEAB
 //    for (const string& row : screen) cout << row << endl;
-    cout << day11a(read_lines("inputs/day11.input"));  // 316888
+    cout << day11a(read_lines("inputs/day11.input")) << endl;  // 316888
+    cout << day11b(read_lines("inputs/day11.input")) << endl;  // 35270398814
     return 0;
 }

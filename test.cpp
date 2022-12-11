@@ -362,4 +362,8 @@ TEST(Samples, Day11) {
             "If false: throw to monkey 1",
     };
     EXPECT_EQ(day11a(sample_input), 10605);
+    EXPECT_EQ(day11b(sample_input), 2713310158);
 }
+// 9242899600
+// 93806779452100
+// 18446744073709551615
