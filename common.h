@@ -1,11 +1,13 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <cassert>
 
 using namespace std;
 
-vector<int> find_numbers(const string& str) {
-    vector<int> numbers;
+template<class C>
+C find_numbers(const string& str) {
+    C numbers;
     char const* digits = "0123456789";
     size_t start, end = 0;
     do {
@@ -14,6 +16,11 @@ vector<int> find_numbers(const string& str) {
         numbers.push_back(stoi(str.substr(start, end != string::npos ? end-start : end)));
     } while (end != string::npos);
     return numbers;
+}
+int find_number(const string& str) {
+    auto numbers = find_numbers<vector<int>>(str);
+    assert(numbers.size() == 1);
+    return numbers[0];
 }
 
 vector<string> split(const string& s, const string& delimiter) {

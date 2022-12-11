@@ -15,7 +15,7 @@ bool overlaps(pair<int, int> a, pair<int, int> b) {
 pair<int, int> day04(const vector<string>& lines) {
     int count_contains = 0, count_overlaps = 0;
     for (const string& line : lines) {
-        vector<int> numbers = find_numbers(line);
+        auto numbers = find_numbers<vector<int>>(line);
         pair<int, int> a = make_pair(numbers[0], numbers[1]);
         pair<int, int> b = make_pair(numbers[2], numbers[3]);
         count_contains += contains(a, b) || contains(b, a) ? 1 : 0;

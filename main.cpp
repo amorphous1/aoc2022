@@ -10,7 +10,8 @@
 //#include "day07.cpp"
 //#include "day08.cpp"
 //#include "day09.cpp"
-#include "day10.cpp"
+//#include "day10.cpp"
+#include "day11.cpp"
 
 using namespace std;
 
@@ -58,9 +59,10 @@ int main() {
 //    cout << day08a(read_lines("inputs/day08.input")) << endl;  // 1690
 //    cout << day08b(read_lines("inputs/day08.input")) << endl;  // 535680
 //    cout << day09a(read_lines("inputs/day09.input")) << endl;  // 6026
-//    cout << day09b(read_lines("inputs/day09.input")) << endl; // 2273
-    cout << day10a(read_lines("inputs/day10.input")) << endl; // 13520
-    vector<string> screen = day10b(read_lines("inputs/day10.input")); // PGPHBEAB
-    for (const string& row : screen) cout << row << endl;
+//    cout << day09b(read_lines("inputs/day09.input")) << endl;  // 2273
+//    cout << day10a(read_lines("inputs/day10.input")) << endl;  // 13520
+//    vector<string> screen = day10b(read_lines("inputs/day10.input"));  // PGPHBEAB
+//    for (const string& row : screen) cout << row << endl;
+    cout << day11a(read_lines("inputs/day11.input"));  // 316888
     return 0;
 }

@@ -7,7 +7,7 @@ using namespace std;
 
 string day05a(vector<stack<char>>& stacks, const vector<string>& moves) {
     for (const string& move : moves) {
-        vector<int> num_from_to = find_numbers(move);
+        auto num_from_to = find_numbers<vector<int>>(move);
         stack<char>& source = stacks.at(num_from_to.at(1) - 1);
         stack<char>& target = stacks.at(num_from_to.at(2) - 1);
         for (int i = 0; i < num_from_to.at(0); i++) {
@@ -25,7 +25,7 @@ string day05a(vector<stack<char>>& stacks, const vector<string>& moves) {
 
 string day05b(vector<stack<char>>& stacks, const vector<string>& moves) {
     for (const string& move : moves) {
-        vector<int> num_from_to = find_numbers(move);
+        auto num_from_to = find_numbers<vector<int>>(move);
         stack<char>& source = stacks.at(num_from_to.at(1) - 1);
         stack<char>& target = stacks.at(num_from_to.at(2) - 1);
         deque<char> to_move = {};
