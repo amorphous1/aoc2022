@@ -375,4 +375,5 @@ TEST(Samples, Day12) {
             "abdefghi",
     };
     EXPECT_EQ(day12a(sample_input), 31);
+    EXPECT_EQ(day12b(sample_input), 29);
 }
