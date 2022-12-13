@@ -12,7 +12,8 @@
 //#include "day09.cpp"
 //#include "day10.cpp"
 //#include "day11.cpp"
-#include "day12.cpp"
+//#include "day12.cpp"
+#include "day13.cpp"
 
 using namespace std;
 
@@ -66,7 +67,8 @@ int main() {
 //    for (const string& row : screen) cout << row << endl;
 //    cout << day11a(read_lines("inputs/day11.input")) << endl;  // 316888
 //    cout << day11b(read_lines("inputs/day11.input")) << endl;  // 35270398814
-    cout << day12a(read_lines("inputs/day12.input")) << endl;  // 383
-    cout << day12b(read_lines("inputs/day12.input")) << endl;  // 377
+//    cout << day12a(read_lines("inputs/day12.input")) << endl;  // 383
+//    cout << day12b(read_lines("inputs/day12.input")) << endl;  // 377
+    cout << day13a(read_lines("inputs/day13.input")) << endl;  //
     return 0;
 }

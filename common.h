@@ -5,6 +5,10 @@
 
 using namespace std;
 
+int sgn(int x) {
+    return (x > 0) ? 1 : ((x < 0) ? -1 : 0);
+}
+
 template<class C>
 C find_numbers(const string& str) {
     C numbers;

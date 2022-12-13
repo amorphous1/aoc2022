@@ -11,6 +11,7 @@
 #include "day10.cpp"
 #include "day11.cpp"
 #include "day12.cpp"
+#include "day13.cpp"
 
 using namespace std;
 
@@ -376,4 +377,34 @@ TEST(Samples, Day12) {
     };
     EXPECT_EQ(day12a(sample_input), 31);
     EXPECT_EQ(day12b(sample_input), 29);
+}
+
+
+TEST(Samples, Day13) {
+    vector<string> sample_input = {
+            "[1,1,3,1,1]",
+            "[1,1,5,1,1]",
+"",
+            "[[1],[2,3,4]]",
+            "[[1],4]",
+"",
+            "[9]",
+            "[[8,7,6]]",
+"",
+            "[[4,4],4,4]",
+            "[[4,4],4,4,4]",
+"",
+            "[7,7,7,7]",
+            "[7,7,7]",
+"",
+            "[]",
+            "[3]",
+"",
+            "[[[]]]",
+            "[[]]",
+"",
+            "[1,[2,[3,[4,[5,6,7]]]],8,9]",
+            "[1,[2,[3,[4,[5,6,0]]]],8,9]",
+    };
+    EXPECT_EQ(day13a(sample_input), 13);
 }
