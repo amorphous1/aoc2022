@@ -2,15 +2,9 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "common.h"
 
 using namespace std;
-
-struct Coord {
-    int x, y;
-    bool operator<(const Coord& other) const {
-        return x < other.x || (x == other.x && y < other.y);
-    }
-};
 
 Coord remove_closest_to_end(set<Coord>& edge, const map<Coord, int>& distance_to_end) {
     Coord closest_to_end = *edge.begin();

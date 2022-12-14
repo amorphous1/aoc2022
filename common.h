@@ -5,6 +5,20 @@
 
 using namespace std;
 
+struct Coord {
+    int x, y;
+    bool operator==(const Coord& other) const {
+        return x == other.x && y == other.y;
+    }
+    bool operator<(const Coord& other) const {
+        return x < other.x || (x == other.x && y < other.y);
+    }
+    friend ostream& operator<<(ostream& o, const Coord& c)
+    {
+        return o << "[" << c.x << "," << c.y << "]";
+    }
+};
+
 int sgn(int x) {
     return (x > 0) ? 1 : ((x < 0) ? -1 : 0);
 }
