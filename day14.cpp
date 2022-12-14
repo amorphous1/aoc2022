@@ -5,29 +5,25 @@
 
 using namespace std;
 
-vector<Coord> connecting_points(const Coord& a, const Coord& b) {
-    vector<Coord> result = { b };
-    int dx = a.x < b.x ? 1 : a.x > b.x ? -1 : 0, dy = a.y < b.y ? 1 : a.y > b.y ? -1 : 0;
-    for (Coord c = a; c != b; c = { c.x + dx, c.y + dy }) {
-        result.push_back(c);
-    }
-    return result;
-}
-
 struct Cave {
     map<Coord, char> tiles;
     int max_y = -1;
 
+    static vector<Coord> connecting_points(const Coord& a, const Coord& b) {
+        vector<Coord> result = { b };
+        int dx = sgn(b.x - a.x), dy = sgn(b.y - a.y);
+        for (Coord c = a; c != b; c = { c.x + dx, c.y + dy }) {
+            result.push_back(c);
+        }
+        return result;
+    }
+
     static Cave parse(const vector<string>& scans) {
         Cave cave;
         for (const string& scan : scans) {
-            vector<Coord> coords;
-            for (const string& coord : split(scan, " -> ")) {
-                vector<string> xy = split(coord, ",");
-                coords.push_back({ stoi(xy[0]), stoi(xy[1]) });
-            }
-            for (int i = 0; i < coords.size() - 1; i++) {
-                for (const Coord& coord : connecting_points(coords[i], coords[i+1])) {
+            auto nums = find_numbers<vector<int>>(scan);
+            for (int i = 3; i < nums.size(); i+= 2) {
+                for (const Coord& coord : connecting_points({nums[i-3], nums[i-2]}, {nums[i-1], nums[i]})) {
                     cave.tiles[coord] = '#';
                     cave.max_y = max(cave.max_y, coord.y);
                 }
@@ -57,18 +53,15 @@ struct Cave {
 int day14a(const vector<string>& scans) {
     Cave cave = Cave::parse(scans);
     int result = 0;
-    while (cave.pour_sand({500, 0})) {
-        result++;
-    }
+    for (result = 0; cave.pour_sand({500, 0}); result++);
     return result;
 }
 
 int day14b(const vector<string>& scans) {
     Cave cave = Cave::parse(scans);
-    int result = 0;
-    while (!cave.tiles.contains({500,0})) {
+    int result;
+    for (result = 0; !cave.tiles.contains({500,0}); result++) {
         cave.pour_sand({500,0});
-        result++;
     }
     return result;
 }

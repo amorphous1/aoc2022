@@ -418,4 +418,3 @@ TEST(Samples, Day14) {
     EXPECT_EQ(day14a(sample_input), 24);
     EXPECT_EQ(day14b(sample_input), 93);
 }
-
