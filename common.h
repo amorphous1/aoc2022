@@ -24,9 +24,9 @@ int sgn(int x) {
 }
 
 template<class C>
-C find_numbers(const string& str) {
+C find_numbers(const string& str, const bool include_negative) {
     C numbers;
-    char const* digits = "0123456789";
+    char const* digits = include_negative ? "-0123456789" : "0123456789";
     size_t start, end = 0;
     do {
         start = str.find_first_of(digits, end);
@@ -36,6 +36,11 @@ C find_numbers(const string& str) {
     } while (end != string::npos);
     return numbers;
 }
+template<class C>
+C find_numbers(const string& str) {
+    return find_numbers<C>(str, false);
+}
+
 int find_number(const string& str) {
     auto numbers = find_numbers<vector<int>>(str);
     assert(numbers.size() == 1);
