@@ -15,7 +15,8 @@
 //#include "day12.cpp"
 //#include "day13.cpp"
 //#include "day14.cpp"
-#include "day15.cpp"
+//#include "day15.cpp"
+#include "day17.cpp"
 
 using namespace std;
 
@@ -75,7 +76,8 @@ int main() {
 //    cout << day13b(read_lines("inputs/day13.input")) << endl;  // 22288
 //    cout << day14a(read_lines("inputs/day14.input")) << endl;  // 665
 //    cout << day14b(read_lines("inputs/day14.input")) << endl;  // 25434
-    cout << day15a(read_lines("inputs/day15.input"), 2000000) << endl;  // 5688618
-    cout << day15b(read_lines("inputs/day15.input"), 4000000) << endl;  // 3561524596760896768 too high
+//    cout << day15a(read_lines("inputs/day15.input"), 2000000) << endl;  // 5688618
+//    cout << day15b(read_lines("inputs/day15.input"), 4000000) << endl;  // 12625383204261
+    cout << day17a(read_lines("inputs/day17.input")[0]) << endl;  // 3197
     return 0;
 }

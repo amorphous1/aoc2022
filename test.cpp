@@ -14,6 +14,7 @@
 #include "day13.cpp"
 #include "day14.cpp"
 #include "day15.cpp"
+#include "day17.cpp"
 
 using namespace std;
 
@@ -437,20 +438,11 @@ TEST(Samples, Day15) {
             "Sensor at x=14, y=3: closest beacon is at x=15, y=3",
             "Sensor at x=20, y=1: closest beacon is at x=15, y=3",
     };
-//    RangeSet r;
-//    r.insert(1,2);
-//    EXPECT_EQ(r.size(), 2);
-//    r.insert(10,12);
-//    EXPECT_EQ(r.size(), 5);
-//    r.insert(11,13);
-//    EXPECT_EQ(r.size(), 6);
-//    r.insert(5,5);
-//    EXPECT_EQ(r.size(), 7);
-//    r.insert(5,9);
-//    EXPECT_EQ(r.size(), 11);
-//    for (auto s : r.ranges) {
-//        cout << s.first << "," << s.second << " ";
-//    }
     EXPECT_EQ(day15a(sample_input, 10), 26);
     EXPECT_EQ(day15b(sample_input, 20), 56000011);
+}
+
+TEST(Samples, Day17) {
+    string sample_input = ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>";
+    EXPECT_EQ(day17a(sample_input), 3068);
 }
