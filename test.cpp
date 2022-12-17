@@ -452,4 +452,5 @@ TEST(Samples, Day15) {
 //        cout << s.first << "," << s.second << " ";
 //    }
     EXPECT_EQ(day15a(sample_input, 10), 26);
+    EXPECT_EQ(day15b(sample_input, 20), 56000011);
 }

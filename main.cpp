@@ -76,5 +76,6 @@ int main() {
 //    cout << day14a(read_lines("inputs/day14.input")) << endl;  // 665
 //    cout << day14b(read_lines("inputs/day14.input")) << endl;  // 25434
     cout << day15a(read_lines("inputs/day15.input"), 2000000) << endl;  // 5688618
+    cout << day15b(read_lines("inputs/day15.input"), 4000000) << endl;  // 3561524596760896768 too high
     return 0;
 }

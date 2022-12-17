@@ -1,4 +1,5 @@
 #include <deque>
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -56,5 +57,24 @@ ulong day15a(const vector<string>& lines, int target_row) {
         }
     }
     return monitoring_at_target_row.size() - beacons_at_target_row.size();
+}
+
+unsigned long long day15b(const vector<string>& lines, int max_coord) {
+    map<int, RangeSet> monitoring_by_row;
+    for (const string& line : lines) {
+        const auto nums = find_numbers<vector<int>>(line, true);
+        Coord scanner = { nums[0], nums[1] }, nearest_beacon = { nums[2], nums[3] };
+        int distance_to_beacon = distance_between(scanner, nearest_beacon);
+        for (int dy = 0; dy <= distance_to_beacon; dy++) {
+            if (scanner.y + dy >= 0 && scanner.y + dy <= max_coord)
+                monitoring_by_row[scanner.y + dy].insert(max(0, scanner.x - distance_to_beacon + dy), min(scanner.x + distance_to_beacon - dy, max_coord));
+            if (scanner.y - dy >= 0 && scanner.y - dy <= max_coord)
+                monitoring_by_row[scanner.y - dy].insert(max(0, scanner.x - distance_to_beacon + dy), min(scanner.x + distance_to_beacon - dy, max_coord));
+        }
+    }
+    for (const auto& [y, ranges] : monitoring_by_row) {
+        if (ranges.ranges.size() > 1) return 4000000uL * (ranges.ranges[0].second + 1) + y;
+    }
+    return 0;
 }
 
