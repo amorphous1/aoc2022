@@ -445,4 +445,5 @@ TEST(Samples, Day15) {
 TEST(Samples, Day17) {
     string sample_input = ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>";
     EXPECT_EQ(day17a(sample_input), 3068);
+    EXPECT_EQ(day17b(sample_input), 1514285714288);
 }

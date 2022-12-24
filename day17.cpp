@@ -1,3 +1,4 @@
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -17,7 +18,7 @@ struct Rock {
 
     void push(const int dx, const set<Coord>& chamber, const int max_x) {
         for (Coord& tile : tiles)
-            if (tile.x + dx < 0 || tile.x + dx > max_x || chamber.contains({tile.x + dx, tile.y}))
+            if ((tile.x == 0 && dx < 0) || tile.x + dx > max_x || chamber.contains({tile.x + dx, tile.y}))
                 return;
         for (Coord& tile : tiles)
             tile.x += dx;
@@ -33,10 +34,25 @@ struct Rock {
     }
 };
 
+struct ChamberFingerprint {
+    int rock, jet;
+    set<Coord> top_filled;
+    bool operator<(const ChamberFingerprint& other) const {
+        return rock < other.rock || (rock == other.rock && jet < other.jet) || (rock == other.rock && jet == other.jet && top_filled < other.top_filled);
+    }
+    static ChamberFingerprint from(int max_height, int rock, int jet, const set<Coord>& filled) {
+        set<Coord> top_filled;
+        for (Coord point : filled)
+            if (point.y >= max_height - 7)
+                top_filled.insert({point.x, max_height - point.y});
+        return { rock, jet, top_filled };
+    }
+};
+
 struct Chamber {
     string jets;
     set<Coord> filled;
-    int max_height = 0, rock = 0, jet = 0;
+    int top, rock = 0, jet = 0;
 
     static constexpr int MAX_X = 6, INITIAL_DX = 2, INITIAL_DY = 4;
     const Rock MINUS    = { {{0, 0}, {1, 0}, {2, 0}, {3, 0}} };
@@ -46,8 +62,8 @@ struct Chamber {
     const Rock SQUARE   = { {{0, 0}, {0, 1}, {1, 0}, {1, 1}} };
     const vector<Rock> ROCKS = {MINUS, PLUS, MIRROR_L, I, SQUARE };
 
-    void place_next_rock() {
-        Rock next_rock = Rock::at_pos({INITIAL_DX, max_height+INITIAL_DY}, ROCKS[rock]);
+    ChamberFingerprint place_next_rock() {
+        Rock next_rock = Rock::at_pos({INITIAL_DX, top + INITIAL_DY}, ROCKS[rock]);
         bool fell_down;
         do {
             next_rock.push(jets[jet] == '<' ? -1 : 1, filled, MAX_X);
@@ -57,14 +73,32 @@ struct Chamber {
         rock = (rock + 1) % (int)ROCKS.size();
         for (const Coord& tile : next_rock.tiles) {
             filled.insert(tile);
-            max_height = max(tile.y, max_height);
+            top = max(tile.y, top);
         }
+        return ChamberFingerprint::from(top, rock, jet, filled);
     }
 };
 
-int day17a(const string& jets) {
+ulong day17(const string& jets, const ulong iterations) {
     Chamber chamber = Chamber{ jets };
-    for (int i = 0; i < 2022; i++)
-        chamber.place_next_rock();
-    return chamber.max_height;
+    map<ChamberFingerprint, pair<int, int>> fingerprint_to_iteration_and_height;
+    for (ulong i = 1; i <= iterations ; i++) {
+        ChamberFingerprint fingerprint = chamber.place_next_rock();
+        if (fingerprint_to_iteration_and_height.contains(fingerprint)) {
+            auto [prev_i, prev_top] = fingerprint_to_iteration_and_height[fingerprint];
+            ulong delta_i = i - prev_i, delta_top = chamber.top - prev_top;
+            ulong extra_cycles = (iterations - i) / delta_i, extra_steps = iterations - i - extra_cycles * delta_i;
+            for (int j = 1; j <= extra_steps; j++)
+                chamber.place_next_rock();
+            return chamber.top + extra_cycles * delta_top;
+        }
+        fingerprint_to_iteration_and_height[fingerprint] = make_pair(i, chamber.top);
+    }
+    return chamber.top;
+}
+ulong day17a(const string& jets) {
+    return day17(jets, 2022);
+}
+ulong day17b(const string& jets) {
+    return day17(jets, 1000000000000);
 }

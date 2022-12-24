@@ -79,5 +79,6 @@ int main() {
 //    cout << day15a(read_lines("inputs/day15.input"), 2000000) << endl;  // 5688618
 //    cout << day15b(read_lines("inputs/day15.input"), 4000000) << endl;  // 12625383204261
     cout << day17a(read_lines("inputs/day17.input")[0]) << endl;  // 3197
+    cout << day17b(read_lines("inputs/day17.input")[0]) << endl;  // 1568513119571
     return 0;
 }
